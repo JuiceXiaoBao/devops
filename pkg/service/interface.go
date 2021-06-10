@@ -25,6 +25,8 @@ type BaseService struct {
 	store.IKVStore
 }
 
+var _ IService = (*BaseService)(nil)
+
 func (bs *BaseService) Watch(namespace, resource, kind, version string, objectChan chan core.IObject, closed chan struct{}) {
 	go func(versionStr string) {
 		version, err := strconv.ParseInt(versionStr, 10, 64)
